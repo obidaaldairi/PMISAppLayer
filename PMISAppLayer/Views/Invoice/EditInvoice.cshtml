@@ -1,0 +1,34 @@
+﻿@using PMISBLayer.Entities
+@model Invoice
+
+<form action="/Invoice/UpdateInvoice">
+
+    @Html.HiddenFor(x => x.InvoiceId)
+
+    <div class="form-group">
+        <label>Invoice Title</label>
+        <input class="form-control" asp-for="InvoiceTitle" />
+    </div>
+
+    <div class="form-group">
+        <label>Invoice Date</label>
+        <input class="form-control" id="InvoiceDate" name="InvoiceDate" value="@Model.InvoiceDate" />
+    </div>
+    <div class="form-group">
+        <label>Select Paymnt Term</label>
+        <select name="PaymentTermIds" class="form-control" multiple>
+            @{
+                foreach (var pt in (List<InvoicePaymentTarm>)ViewBag.pmtbyinvid)
+                {
+
+                    <option selected value="@pt.PaymentTermId">@pt.PaymentTerm.PaymentTermTitle</option>
+                }
+            }
+        </select>
+    </div>
+    <input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Update" />
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/Invoice/Index">Back</a>
+</form>
+
+
+

@@ -1,0 +1,29 @@
+﻿@using PMISBLayer.Entities
+@using PMISBLayer.DTOs
+@model Client
+
+<form action="/Client/UpdateCLient">
+    @Html.HiddenFor(x => x.ClientId)
+    <div class="form-group">
+        <label>Client Name</label>
+        <input class="form-control" asp-for="ClientName" />
+    </div>
+
+    <div class="form-group">
+        <label>CLient Phone</label>
+        <input class="form-control" asp-for="ClientPhone" />
+    </div>
+
+    <div class="form-group">
+        <label>CLient Email</label>
+        <input class="form-control" asp-for="ClientEmail" />
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        <input class="form-control" asp-for="Address" />
+    </div>
+
+    <input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Update" />
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/Client/Index">Back</a>
+</form>
+

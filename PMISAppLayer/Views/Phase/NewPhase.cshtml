@@ -1,0 +1,24 @@
+﻿@using PMISAppLayer
+@using PMISBLayer.Entities
+@using PMISBLayer.DTOs
+@model InsertPhaseDTO2
+
+<form action="/Phase/InsertPhase">
+
+    <div class="form-group">
+        <label>Phase Name</label>
+        <input class="form-control" asp-for="PhaseName">
+        <span class="text-danger" asp-validation-for="PhaseName"></span>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Add</button>
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/Phase/Index">Back</a>
+</form>
+
+
+
+
+
+
+
+

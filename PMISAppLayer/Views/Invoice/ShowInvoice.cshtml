@@ -1,0 +1,124 @@
+﻿@model PMISBLayer.Entities.Invoice
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <!--  If you want to help us go here https://www.bootdey.com/help-us -->
+    <title>bs4 invoice - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="~/css/InvoiceBill.css" />
+    <style>
+        body{
+            margin:0;
+            padding:0
+        }
+    </style>
+</head>
+<body>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="invoice">
+                <!-- begin invoice-company -->
+                <div class="invoice-company text-inverse f-w-600">
+                    <span class="pull-right hidden-print">
+                        <a href="javascript:;" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-file t-plus-1 text-danger fa-fw fa-lg"></i> Export as PDF</a>
+                        <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
+                    </span>
+                    FCE.CO
+                </div>
+                <!-- end invoice-company -->
+                <!-- begin invoice-header -->
+                <div class="invoice-header">
+                    <div class="invoice-from">
+                        <small>from</small>
+                        <address class="m-t-5 m-b-5">
+                            <strong class="text-inverse">FCE.CO</strong><br>
+                            Amman-AlNassem Street<br>
+                            Phone:0795557787<br>
+                        </address>
+                    </div>
+                    <div class="invoice-to">
+                        <small>to</small>
+                        <address class="m-t-5 m-b-5">
+                            <strong class="text-inverse">@Model.Project.Client.ClientName</strong><br>
+                            @Model.Project.Client.Address<br>
+                            Phone:@Model.Project.Client.ClientPhone<br>
+                        </address>
+                    </div>
+                    <div class="invoice-date">
+                        <small>@Model.InvoiceTitle</small>
+                        <div class="date text-inverse m-t-5">@Model.InvoiceDate</div>
+                    </div>
+                </div>
+                <!-- end invoice-header -->
+                <!-- begin invoice-content -->
+                <div class="invoice-content">
+                    <!-- begin table-responsive -->
+                    <div class="table-responsive">
+                        <table class="table table-invoice">
+                            <thead>
+                                <tr>
+                                    <th>Deliverables</th>
+                                    <th class="text-center" width="10%">Name</th>
+                                    <th class="text-right" width="10%">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var x in Model.InvoicePaymentTarms)
+                                 {
+                                    <tr>
+                                        <td>@x.PaymentTerm.Deliverable.DeliverableDescription</td>
+                                        <td>@x.PaymentTerm.PaymentTermTitle</td>
+                                        <td>@x.PaymentTerm.PaymentTermAmount</td>
+                                    </tr>
+                                 }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- end table-responsive -->
+                    <!-- begin invoice-price -->
+                    <div class="invoice-price">
+                        <div class="invoice-price-left">
+                            <div class="invoice-price-row">
+                            </div>
+                        </div>
+                        <div class="invoice-price-right">
+                            <small>TOTAL</small> <span class="f-w-600">@Model.InvoicePaymentTarms.Sum(x=>x.PaymentTerm.PaymentTermAmount)</span>
+                        </div>
+                    </div>
+                    <!-- end invoice-price -->
+                </div>
+                <!-- end invoice-content -->
+                <!-- begin invoice-note -->
+                <div class="invoice-note">
+                    * Make all cheques payable to FCE.CO<br>
+                    * Payment is due within 30 days<br>
+                    * If you have any questions concerning this invoice, contact (FCE.CO@gmail.com)
+                </div>
+                <!-- end invoice-note -->
+                <!-- begin invoice-footer -->
+                <div class="invoice-footer">
+                    <p class="text-center m-b-5 f-w-600">
+                        THANK YOU FOR YOUR BUSINESS
+                    </p>
+                    <p class="text-center">
+                        <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i> T:0795557787</span>
+                        <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i>FCE.CO@gmail.com</span>
+                    </p>
+                </div>
+                <!-- end invoice-footer -->
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

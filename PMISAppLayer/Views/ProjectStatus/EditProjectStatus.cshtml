@@ -1,0 +1,15 @@
+﻿@using PMISBLayer.Entities
+@using PMISBLayer.DTOs
+@model ProjectStatus
+
+<form action="/ProjectStatus/UpdateProjectStatus">
+    @Html.HiddenFor(x => x.ProjectStatusId)
+    <div class="form-group">
+        <label>Project Status Name</label>
+        <input class="form-control" asp-for="ProjectStatusName" />
+    </div>
+
+    <input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Update" />
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/ProjectStatus/Index">Back</a>
+</form>
+

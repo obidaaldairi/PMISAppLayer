@@ -1,0 +1,88 @@
+﻿@using PMISAppLayer
+@using PMISBLayer.Entities
+@using PMISBLayer.DTOs
+@model InsertDelivrableDTO
+<script>
+    $(function () {
+        $("#DeliStartDate").datepicker({
+
+        });
+        $("#DeliEndDate").datepicker({
+
+        });
+    });
+
+    function GetDate() {
+        var pphId = $('#ProjectPhaseId').val()
+        var pphase = document.getElementById('ProjectPhaseIds');
+        pphase.value = pphId;
+        console.log(pphase.value)
+        $.ajax({
+            url: "/Deliverable/getDate",
+            data: { ProjectPhaseId: pphId },
+            contentType: "application/json",
+            success: function (date) {
+                console.log(date)
+                $("#StartDate").attr("value", date.startDate);
+                $("#EndDate").attr("value", date.endDate);
+            },
+            error: function () {
+                alert('Something went wrong !');
+            }
+        });
+    }
+</script>
+@if(@ViewBag.msg != null)
+    {
+
+        <span class="text-danger"> The date is wrong check it out</span> 
+ 
+    }
+<br />
+<hr />
+<form action="/Deliverable/InsertDeliverable">
+    <input hidden id="ProjectPhaseIds" name="ProjectPhaseId" value="" />
+
+    <div class="form-group">
+        <label>Select Project</label>
+        <select class="form-control" asp-for="ProjectPhaseId" onchange="GetDate()">
+
+            <option selected disabled>Select Phase</option>
+            @{
+                foreach (var pph in (List<ProjectPhase>)ViewBag.ProjectPhase)
+                {
+                    <option value="@pph.ProjectPhaseId">@pph.Project.ProjectName-@pph.Phase.PhaseName</option>
+
+                    
+
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Decription</label>
+        <input class="form-control" asp-for="DeliverableDescription">
+        <span class="text-danger" asp-validation-for="DeliverableDescription"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Start Date</label>
+        <input class="form-control" asp-for="DeliStartDate">
+        <span class="text-danger" asp-validation-for="DeliStartDate"></span>
+    </div>
+
+    <div class="form-group">
+        <label>End Date</label>
+        <input class="form-control" asp-for="DeliEndDate">
+        <span class="text-danger" asp-validation-for="DeliEndDate"></span>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Add</button>
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/Deliverable/Index">Back</a>
+</form>
+
+
+
+

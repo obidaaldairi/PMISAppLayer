@@ -1,0 +1,71 @@
+﻿@using PMISAppLayer
+@using PMISBLayer.Entities
+@using PMISBLayer.DTOs
+@model InsertPhaseDTO
+
+@{ 
+    var project = (Project)ViewBag.project;
+}
+<script>
+    $(function () {
+        $("#PhaseStartDate").datepicker({
+
+        });
+        $("#PhaseEndDate").datepicker({
+
+        });
+    });
+</script>
+
+<form action="/Project/InsertPhase">
+
+    <input name="ProjectId" value="@project.ProjectId" readonly style="display:none;" />
+    <input name="StartDate" value="@project.StartDate" readonly style="display:none;" />
+    <input name="EndDate" value="@project.EndDate" readonly style="display:none;" />
+
+    <div class="form-group">
+        <label>Project Name</label>
+        <input readonly class="form-control" value="@project.ProjectName">
+    </div>
+
+    <div class="form-group">
+        <label>Select Phases</label>
+        <select name="PhaseId" class="form-control">
+            @{
+                foreach (var ph in (List<Phase>)ViewBag.phases)
+                {
+                    if (((List<int>)ViewBag.projectPhase).Contains(ph.PhaseId))
+                    {
+                        <option disabled value="@ph.PhaseId">@ph.PhaseName</option>
+
+                    }
+                    else
+                    {
+                        <option value="@ph.PhaseId">@ph.PhaseName</option>
+
+                    }
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Start Date</label>
+        <input class="form-control" asp-for="PhaseStartDate">
+        <span asp-validation-for="PhaseStartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>End Date</label>
+        <input class="form-control" asp-for="PhaseEndDate">
+        <span asp-validation-for="PhaseEndDate" class="text-danger"></span>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Add</button>
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/Project/Index">Back</a>
+</form>
+
+
+

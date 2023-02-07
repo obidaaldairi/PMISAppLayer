@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20221213194016_CreatIdentity.cs" />
+    <Compile Remove="Migrations\20221213194016_CreatIdentity.Designer.cs" />
+    <Compile Remove="Migrations\20221213194257_CreatIdentity.cs" />
+    <Compile Remove="Migrations\20221213194257_CreatIdentity.Designer.cs" />
+    <Compile Remove="Migrations\20221214181018_initilizeDB.cs" />
+    <Compile Remove="Migrations\20221214181018_initilizeDB.Designer.cs" />
+    <Compile Remove="Migrations\20221230090739_client.cs" />
+    <Compile Remove="Migrations\20221230090739_client.Designer.cs" />
+    <Compile Remove="Migrations\20221230090849_client.cs" />
+    <Compile Remove="Migrations\20221230090849_client.Designer.cs" />
+    <Compile Remove="Migrations\20221230091224_client.cs" />
+    <Compile Remove="Migrations\20221230091224_client.Designer.cs" />
+    <Compile Remove="Migrations\20221230091707_Client.cs" />
+    <Compile Remove="Migrations\20221230091707_Client.Designer.cs" />
+    <Compile Remove="Migrations\20221230092830_client.cs" />
+    <Compile Remove="Migrations\20221230092830_client.Designer.cs" />
+    <Compile Remove="Migrations\20221230093251_client.cs" />
+    <Compile Remove="Migrations\20221230093251_client.Designer.cs" />
+    <Compile Remove="Migrations\20221230093534_client.cs" />
+    <Compile Remove="Migrations\20221230093534_client.Designer.cs" />
+    <Compile Remove="Migrations\20221230094121_addingclient.cs" />
+    <Compile Remove="Migrations\20221230094121_addingclient.Designer.cs" />
+    <Compile Remove="Migrations\20221230094823_addingclient.cs" />
+    <Compile Remove="Migrations\20221230094823_addingclient.Designer.cs" />
+    <Compile Remove="Migrations\20221230095557_addingclient.cs" />
+    <Compile Remove="Migrations\20221230095557_addingclient.Designer.cs" />
+    <Compile Remove="Migrations\20221230101123_addingclient.cs" />
+    <Compile Remove="Migrations\20221230101123_addingclient.Designer.cs" />
+    <Compile Remove="Migrations\20221230102410_addingclient.cs" />
+    <Compile Remove="Migrations\20221230102410_addingclient.Designer.cs" />
+    <Compile Remove="Migrations\20221230113208_addingclient.cs" />
+    <Compile Remove="Migrations\20221230113208_addingclient.Designer.cs" />
+    <Compile Remove="Migrations\20221230123030_addingclient.cs" />
+    <Compile Remove="Migrations\20221230123030_addingclient.Designer.cs" />
+    <Compile Remove="Migrations\20221230125238_addingclient.cs" />
+    <Compile Remove="Migrations\20221230125238_addingclient.Designer.cs" />
+    <Compile Remove="Migrations\20230111142255_deletenull.cs" />
+    <Compile Remove="Migrations\20230111142255_deletenull.Designer.cs" />
+    <Compile Remove="Migrations\20230205164707_test.cs" />
+    <Compile Remove="Migrations\20230205164707_test.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.29" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.29" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.29">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

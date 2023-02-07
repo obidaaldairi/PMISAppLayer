@@ -1,0 +1,23 @@
+﻿@using PMISAppLayer
+@using PMISBLayer.Entities
+@using PMISBLayer.DTOs
+@model InsertProjectTypeDTO
+
+<form action="/ProjectType/InsertProjectType">
+
+    <div class="form-group">
+        <label>Project Type Name</label>
+        <input class="form-control" asp-for="ProjectTypeName">
+        <span class="text-danger" asp-validation-for="ProjectTypeName"></span>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Add</button>
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/ProjectType/Index">Back</a>
+</form>
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+﻿@using PMISAppLayer
+@using PMISBLayer.Entities
+@model InsertProjectDTO
+
+<script>
+    $(function () {
+        $("#StartDate").datepicker({
+        });
+        $("#EndDate").datepicker({
+        });
+    });
+</script>
+
+<form action="/Project/InsertProject" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Project Name</label>
+        <input class="form-control" asp-for="ProjectName">
+        <span class="text-danger" asp-validation-for="ProjectName"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Contract Amount</label>
+        <input class="form-control" asp-for="ContractAmount">
+        <span class="text-danger" asp-validation-for="ContractAmount"></span>
+    </div>
+    <div class="form-group">
+        <label>Start Date</label>
+        <input class="form-control" id="StartDate" name="StartDate">
+        <span class="text-danger" asp-validation-for="StartDate"></span>
+    </div>
+
+    <div class="form-group">
+        <label>End Date</label>
+        <input class="form-control" id="EndDate" name="EndDate">
+        <span class="text-danger" asp-validation-for="EndDate"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Select Project Type</label>
+        <select name="ProjectTypeId" class="form-control">
+            @{
+                foreach (var pt in (List<ProjectType>)ViewBag.projectTypes)
+                {
+                    <option value="@pt.ProjectTypeId">@pt.ProjectTypeName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Select Project Status</label>
+        <select name="ProjectStatusId" class="form-control">
+            @{
+                foreach (var ps in (List<ProjectStatus>)ViewBag.projectStatuses)
+                {
+                    <option value="@ps.ProjectStatusId">@ps.ProjectStatusName</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Select Client</label>
+        <select name="ClientId" class="form-control">
+            @{
+                foreach (var c in (List<Client>)ViewBag.clients)
+                {
+                    <option value="@c.ClientId">@c.ClientName</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Upload Contract</label>
+        <input class="form-control" type="file" name="ContractFile">
+        <span class="text-danger" asp-validation-for="ContractFile"></span>
+
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Add</button>
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/Project/Index">Back</a>
+</form>
+
+

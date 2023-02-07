@@ -1,0 +1,46 @@
+﻿@using PMISAppLayer
+@using PMISBLayer.Entities
+@model PaymentTerm
+
+
+@if (@ViewBag.msg == false) 
+{
+<span class="text-danger">total of payment  greater than contract amount</span>
+}
+<form action="/PaymentTerm/InsertPaymentTerm">
+
+    <div class="form-group">
+        <label>Select Deliverable</label>
+        <select name="DeliverableId" id="DeliverableId" class="form-control" onchange="GetProject()">
+            <option selected disabled>Select Deliverable</option>
+            @{
+                foreach (var D in (List<Deliverable>)ViewBag.Deliv)
+                {
+                    <option value="@D.DeliverableId">@D.ProjectPhase.Project.ProjectName - @D.DeliverableDescription</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Payment Term Title</label>
+        <input class="form-control" asp-for="PaymentTermTitle">
+        <span asp-validation-for="PaymentTermTitle" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Payment Term Amount</label>
+        <input class="form-control" asp-for="PaymentTermAmount">
+        <span asp-validation-for="PaymentTermAmount" class="text-danger"></span>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Add</button>
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/PaymentTerm/Index">Back</a>
+</form>
+
+
+
+
+

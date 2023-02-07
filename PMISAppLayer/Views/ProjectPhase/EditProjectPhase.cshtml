@@ -1,0 +1,24 @@
+﻿@using PMISBLayer.Entities
+@model ProjectPhase
+<div  asp-validation-summary="All" class="text-danger"></div>
+<form action="/ProjectPhase/UpdateProjectPhase">
+
+    @Html.HiddenFor(x => x.ProjectPhaseId)
+    @Html.HiddenFor(x => x.ProjectId)
+
+    <input id="StartDate" name="StartDate" value="@Model.Project.StartDate" style="display:none;" />
+    <input id="EndDate" name="EndDate" value="@Model.Project.EndDate" style="display:none;" />
+
+    <div class="form-group">
+        <label>Start Date</label>
+        <input class="form-control" id="PhaseStartDate" name="PhaseStartDate" value="@Model.StartDate" />
+    </div>
+
+    <div class="form-group">
+        <label>End Date</label>
+        <input class="form-control" id="PhaseEndDate" name="PhaseEndDate" value="@Model.EndDate" />
+    </div>
+
+    <input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Update" />
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/ProjectPhase/Index">Back</a>
+</form>

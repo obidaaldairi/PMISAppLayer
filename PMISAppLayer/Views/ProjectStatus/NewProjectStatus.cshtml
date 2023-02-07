@@ -1,0 +1,22 @@
+﻿@using PMISAppLayer
+@using PMISBLayer.Entities
+@using PMISBLayer.DTOs
+@model InsertProjectStatusDTO
+
+<form action="/ProjectStatus/InsertProjectStatus">
+
+    <div class="form-group">
+        <label>Project Status Name</label>
+        <input class="form-control" asp-for="ProjectStatusName">
+        <span class="text-danger" asp-validation-for="ProjectStatusName"></span>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Add</button>
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/ProjectStatus/Index">Back</a>
+</form>
+
+
+
+
+
+

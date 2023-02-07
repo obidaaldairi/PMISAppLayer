@@ -1,0 +1,30 @@
+﻿@using PMISBLayer.Entities
+@model Deliverable
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form action="/Deliverable/UpdateDeliverable">
+
+    @Html.HiddenFor(x => x.DeliverableId)
+    <input id="StartDate" name="StartDate" value="@Model.ProjectPhase.StartDate" style="display:none;" />
+    <input id="EndDate" name="EndDate" value="@Model.ProjectPhase.EndDate" style="display:none;" />
+
+    <div class="form-group">
+        <label>Deliverable Description</label>
+        <input class="form-control" asp-for="DeliverableDescription" />
+    </div>
+
+    <div class="form-group">
+        <label>Start Date</label>
+        <input class="form-control" id="DeliStartDate" name="DeliStartDate" value="@Model.StartDate" />
+    </div>
+
+    <div class="form-group">
+        <label>End Date</label>
+        <input class="form-control" id="DeliEndDate" name="DeliEndDate" value="@Model.EndDate" />
+    </div>
+
+    <input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Update" />
+    <a class="btn btn-outline-secondary btn-lg btn-block" href="/Deliverable/Index">Back</a>
+</form>
+

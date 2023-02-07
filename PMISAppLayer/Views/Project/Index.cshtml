@@ -1,0 +1,60 @@
+﻿
+@using PMISBLayer.Entities
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a class="btn btn-outline-primary" href="/Project/NewProject">Create New Project</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Project Status</th>
+                            <th>Project Type</th>
+                            <th>Client</th>
+                            <th>Project Amount</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>phase</th>
+                            <th>Project Contract</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var p in (List<Project>)ViewBag.projects)
+                        {
+                            <tr>
+                                <td>@p.ProjectName</td>
+                                <td>@p.ProjectStatus.ProjectStatusName</td>
+                                <td>@p.ProjectType.ProjectTypeName</td>
+                                <td>@p.Client.ClientName</td>
+                                <td>@p.ContractAmount</td>
+                                <td>@p.StartDate.ToString("d")</td>
+                                <td>@p.EndDate.ToString("d")</td>
+
+                                <td><a class="btn btn-outline-primary" href="/Project/NewPhase?projectId=@p.ProjectId&&StartDate=@p.StartDate&&EndDate=@p.EndDate">Phase</a></td>
+                                <td><a class="btn btn-outline-primary" target="_blank" href="/Project/ViewContract?ProjectId=@p.ProjectId">@p.ContractFileName</a></td>
+                                <td>
+                                    <a class="btn btn-outline-warning" href="/Project/EditProject?ProjectId=@p.ProjectId"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a class="btn btn-outline-danger" href="/Project/DeleteProject?ProjectId=@p.ProjectId"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{ 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.6/sb-1.3.3/sp-2.0.1/sl-1.4.0/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.6/sb-1.3.3/sp-2.0.1/sl-1.4.0/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+}

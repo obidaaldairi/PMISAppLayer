@@ -1,0 +1,55 @@
+﻿
+
+@using PMISBLayer.Entities
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a class="btn btn-outline-primary" href="/Invoice/NewInvoice">Create New Invoice</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Invoice Id</th>
+                            <th>Invoice Title</th>
+                            <th>Invoice Date</th>
+                            <th>Project Name</th>
+                            <th>Invoice Amount</th>
+                            <th>View Invoice</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var In in (List<Invoice>)ViewBag.Invoice)
+                        {
+                            <tr>
+                                <td>@In.InvoiceId</td>
+                                <td>@In.InvoiceTitle</td>
+                                <td>@In.InvoiceDate.ToString("d")</td>
+                                <td>@In.Project.ProjectName</td>
+                                <td>@In.InvoicePaymentTarms.Sum(x => x.PaymentTerm.PaymentTermAmount)</td>
+                                <td><a class="btn btn-outline-success" href="/Invoice/ShowInvoice?id=@In.InvoiceId">View Invoice</a></td>
+                                <td>
+                                    <a class="btn btn-outline-warning" href="/Invoice/EditInvoice?InvoiceId=@In.InvoiceId&&ProjectId=@In.ProjectId"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a class="btn btn-outline-danger" href="/Invoice/DeleteInvoice?InvoiceId=@In.InvoiceId"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.6/sb-1.3.3/sp-2.0.1/sl-1.4.0/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.6/sb-1.3.3/sp-2.0.1/sl-1.4.0/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+}
+
